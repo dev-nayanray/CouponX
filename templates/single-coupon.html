@@ -1,0 +1,63 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","align":"wide","className":"single-coupon-page"} -->
+<main class="wp-block-group alignwide single-coupon-page">
+    
+    <!-- Post Title -->
+    <!-- wp:post-title {"level":1,"className":"single-coupon-title"} /-->
+
+    <!-- Layout: Columns -->
+    <!-- wp:columns {"align":"wide"} -->
+    <div class="wp-block-columns alignwide">
+        
+        <!-- Left Column: Image -->
+        <!-- wp:column {"width":"60%"} -->
+        <div class="wp-block-column" style="flex-basis:60%">
+            <!-- wp:post-featured-image {"className":"single-coupon-image"} /-->
+        </div>
+        <!-- /wp:column -->
+        
+        <!-- Right Column: Content -->
+        <!-- wp:column {"width":"40%"} -->
+        <div class="wp-block-column" style="flex-basis:40%">
+            <!-- wp:post-content {"className":"single-coupon-description"} /-->
+            
+            <!-- Coupon Info Section -->
+            <!-- wp:group {"style":{"spacing":{"padding":{"top":"20px"}}},"className":"coupon-info-section"} -->
+            <div class="wp-block-group coupon-info-section" style="padding-top:20px">
+                
+                <?php
+                // Get all post meta
+                $post_meta = get_post_meta(get_the_ID());
+
+                if (!empty($post_meta)) :
+                ?>
+                    <div class="all-coupon-meta" style="padding: 20px; background: #f9f9f9; border-radius: 8px;">
+                        <?php foreach ($post_meta as $key => $value) :
+                            // Skip WordPress hidden meta fields (start with "_")
+                            if (strpos($key, '_') === 0) continue;
+
+                            // Get the value (handle array)
+                            $meta_value = is_array($value) ? implode(', ', $value) : $value;
+                        ?>
+                            <p style="margin-bottom:10px;">
+                                <strong><?php echo esc_html(ucwords(str_replace('_', ' ', $key))); ?>:</strong> 
+                                <?php echo esc_html($meta_value); ?>
+                            </p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+            <!-- /wp:group -->
+
+        </div>
+        <!-- /wp:column -->
+        
+    </div>
+    <!-- /wp:columns -->
+    
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

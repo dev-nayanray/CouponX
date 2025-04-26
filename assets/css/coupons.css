@@ -1,0 +1,150 @@
+.modern-coupons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.coupon-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.coupon-card:hover {
+    transform: translateY(-5px);
+}
+
+.expired-banner {
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: #ef4444;
+    color: white;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    z-index: 2;
+}
+
+.coupon-header {
+    padding: 1rem;
+    background: #f8fafc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.store-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.store-logo {
+    width: 60px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.coupon-type {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.coupon-type.coupon { background: #3b82f6; color: white; }
+.coupon-type.deal { background: #10b582; color: white; }
+
+.coupon-body {
+    padding: 1.5rem;
+}
+
+.coupon-categories {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.category-tag {
+    background: #e2e8f0;
+    color: #64748b;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.coupon-title {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    color: #1e293b;
+}
+
+.discount-value {
+    color: #10b582;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.code-wrapper {
+    display: flex;
+    background: #f8fafc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.coupon-code {
+    flex: 1;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 1.1rem;
+    border: none;
+    background: transparent;
+}
+
+.copy-button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.copy-button:hover { background: #2563eb; }
+
+.deal-button {
+    display: block;
+    text-align: center;
+    background: #10b582;
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.deal-button:hover { background: #0d946c; }
+
+.external-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+@media (max-width: 768px) {
+    .modern-coupons-grid {
+        grid-template-columns: 1fr;
+    }
+}
+ 

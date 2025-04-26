@@ -1,0 +1,133 @@
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"80px","bottom":"30px"},"blockGap":"40px"},"gradient":"dark-gradient","className":"site-footer"} -->
+<footer class="wp-block-group alignfull site-footer has-dark-gradient-gradient has-background">
+    <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+    <div class="wp-block-group alignwide">
+        <!-- wp:columns {"verticalAlignment":"top","className":"footer-widgets"} -->
+        <div class="wp-block-columns are-vertically-aligned-top footer-widgets">
+            <!-- wp:column {"verticalAlignment":"top","width":"30%"} -->
+            <div class="wp-block-column is-vertically-aligned-top" style="flex-basis:30%">
+                <!-- wp:site-title {"level":0,"fontSize":"large"} /-->
+                
+                <!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.6"}},"textColor":"light-gray"} -->
+                <p class="has-light-gray-color has-text-color" style="line-height:1.6">Find the best deals, coupons, and promotional offers from your favorite brands. Save big on shopping with daily updated offers.</p>
+                <!-- /wp:paragraph -->
+                
+                <!-- wp:social-links {"className":"is-style-pill-shape","iconColor":"white","iconColorValue":"#ffffff","size":"has-normal-icon-size"} -->
+                <ul class="wp-block-social-links has-normal-icon-size is-style-pill-shape">
+                    <!-- wp:social-link {"url":"#","service":"facebook"} /-->
+                    <!-- wp:social-link {"url":"#","service":"twitter"} /-->
+                    <!-- wp:social-link {"url":"#","service":"instagram"} /-->
+                    <!-- wp:social-link {"url":"#","service":"pinterest"} /-->
+                </ul>
+                <!-- /wp:social-links -->
+            </div>
+            <!-- /wp:column -->
+
+            <!-- wp:column {"verticalAlignment":"top","width":"20%"} -->
+            <div class="wp-block-column is-vertically-aligned-top" style="flex-basis:20%">
+                <!-- wp:heading {"level":4,"style":{"typography":{"textTransform":"uppercase"}},"textColor":"white"} -->
+                <h4 class="has-white-color has-text-color" style="text-transform:uppercase">Quick Links</h4>
+                <!-- /wp:heading -->
+                
+                <!-- wp:navigation {"overlayMenu":"never","className":"footer-menu","layout":{"type":"flex","orientation":"vertical"},"fontSize":"small"} /-->
+            </div>
+            <!-- /wp:column -->
+
+            <!-- wp:column {"verticalAlignment":"top","width":"20%"} -->
+            <div class="wp-block-column is-vertically-aligned-top" style="flex-basis:20%">
+                <!-- wp:heading {"level":4,"style":{"typography":{"textTransform":"uppercase"}},"textColor":"white"} -->
+                <h4 class="has-white-color has-text-color" style="text-transform:uppercase">Top Brands</h4>
+                <!-- /wp:heading -->
+                
+                <!-- wp:paragraph {"className":"brand-logos","fontSize":"small"} -->
+                <div class="brand-logos has-small-font-size">
+                    <!-- wp:image {"sizeSlug":"thumbnail","linkDestination":"none"} -->
+                    <figure class="wp-block-image size-thumbnail"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/brand1.png" alt="Brand 1"/></figure>
+                    <!-- /wp:image -->
+                    <!-- Repeat similar blocks for other brands -->
+                </div>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:column -->
+
+            <!-- wp:column {"verticalAlignment":"top","width":"30%"} -->
+            <div class="wp-block-column is-vertically-aligned-top" style="flex-basis:30%">
+                <!-- wp:heading {"level":4,"style":{"typography":{"textTransform":"uppercase"}},"textColor":"white"} -->
+                <h4 class="has-white-color has-text-color" style="text-transform:uppercase">Newsletter</h4>
+                <!-- /wp:heading -->
+                
+                <!-- wp:paragraph {"textColor":"light-gray"} -->
+                <p class="has-light-gray-color has-text-color">Subscribe to get exclusive coupon codes &amp; special offers</p>
+                <!-- /wp:paragraph -->
+                
+                <!-- wp:jetpack/subscriptions {"borderRadius":50,"buttonBackgroundColor":"primary","textColor":"white"} /-->
+            </div>
+            <!-- /wp:column -->
+        </div>
+        <!-- /wp:columns -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:separator {"className":"is-style-wide"} -->
+    <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+    <!-- /wp:separator -->
+
+    <!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between"}} -->
+    <div class="wp-block-group alignwide">
+        <!-- wp:paragraph {"fontSize":"small"} -->
+        <p class="has-small-font-size">© <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
+        <!-- /wp:paragraph -->
+        
+        <!-- wp:paragraph {"fontSize":"small"} -->
+        <p class="has-small-font-size">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact Us</a>
+        </p>
+        <!-- /wp:paragraph -->
+    </div>
+    <!-- /wp:group -->
+</footer>
+<!-- /wp:group -->
+
+<style>
+.footer-widgets {
+    gap: 40px;
+}
+
+.footer-menu a {
+    color: #a0aec0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-menu a:hover {
+    color: #ffffff;
+}
+
+.brand-logos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.wp-block-jetpack-subscriptions__submit {
+    border-radius: 50px !important;
+    padding: 12px 30px !important;
+}
+
+@media (max-width: 768px) {
+    .footer-widgets {
+        flex-direction: column !important;
+        gap: 40px;
+    }
+    
+    .wp-block-column {
+        flex-basis: 100% !important;
+    }
+    
+    .brand-logos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>

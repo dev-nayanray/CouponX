@@ -1,0 +1,267 @@
+<!-- wp:group {"tagName":"header","align":"full","className":"site-header is-style-pro-header","layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"0","bottom":"0"}},"backgroundColor":"dark","textColor":"white"}} -->
+<header class="wp-block-group alignfull site-header is-style-pro-header has-dark-background-color has-white-color has-text-color has-background">
+
+     
+
+    <!-- Promo Bar -->
+    <!-- wp:group {"align":"full","className":"promo-bar","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"backgroundColor":"primary","layout":{"type":"flex","justifyContent":"center"}} -->
+    <div class="wp-block-group alignfull promo-bar has-primary-background-color has-background">
+        <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
+        <p class="has-text-align-center has-small-font-size">🎉 Exclusive Offer: Get 25% Bonus Cash Back • <a href="#" class="has-white-color has-text-color has-underline-animation">Claim Now</a></p>
+        <!-- /wp:paragraph -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- Main Navigation -->
+    <!-- wp:group {"align":"wide","className":"main-nav","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|40"}}} -->
+    <div class="wp-block-group alignwide main-nav">
+        
+        <!-- Branding -->
+        <!-- wp:group {"className":"branding","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+        <div class="wp-block-group branding">
+            <!-- wp:site-logo {"width":56,"className":"is-style-logo-glow"} /-->
+            <!-- wp:site-title {"level":0,"fontSize":"x-large","fontFamily":"heading","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}}} /-->
+        </div>
+        <!-- /wp:group -->
+        
+        <!-- Desktop Nav -->
+        <!-- wp:navigation {"className":"desktop-nav","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center","orientation":"horizontal"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"fontSize":"medium","fontFamily":"body"} -->
+            <!-- wp:navigation-submenu {"label":"Deals","url":"#","className":"is-style-mega-menu"} -->
+                <!-- wp:navigation-link {"label":"Today's Top 20","url":"#","description":"🔥 Trending Now","className":"is-style-hot"} /-->
+                <!-- wp:navigation-link {"label":"Category Deals","url":"#","description":"🛍️ By Department"} /-->
+                <!-- wp:navigation-link {"label":"Cash Back","url":"#","description":"💸 Earn Extra"} /-->
+            <!-- /wp:navigation-submenu -->
+            <!-- wp:navigation-link {"label":"Stores","url":"#","className":"is-style-pill"} /-->
+            <!-- wp:navigation-link {"label":"Blog","url":"#"} /-->
+            <!-- wp:navigation-link {"label":"Help","url":"#"} /-->
+        <!-- /wp:navigation -->
+        
+        <!-- Actions -->
+        <!-- wp:group {"className":"header-actions","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
+        <div class="wp-block-group header-actions">
+            <!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search stores & coupons...","buttonPosition":"button-inside","buttonUseIcon":true,"className":"is-style-glass-search"} /-->
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"className":"is-style-gradient-button","textColor":"white","backgroundColor":"accent","fontSize":"small"} -->
+                <div class="wp-block-button is-style-gradient-button has-small-font-size"><a class="wp-block-button__link has-accent-background-color has-white-color has-text-color wp-element-button">Sign In</a></div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:group -->
+        
+    </div>
+    <!-- /wp:group -->
+
+    <!-- Mobile Nav -->
+    <!-- wp:group {"className":"mobile-nav","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+    <div class="wp-block-group mobile-nav">
+        <!-- wp:buttons -->
+        <div class="wp-block-buttons">
+            <!-- wp:button {"className":"is-style-menu-toggle","textColor":"white"} -->
+            <div class="wp-block-button is-style-menu-toggle"><button class="wp-block-button__link has-white-color has-text-color">☰</button></div>
+            <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+        <!-- wp:site-logo {"width":40,"className":"is-style-logo-glow"} /-->
+    </div>
+    <!-- /wp:group -->
+
+</header>
+<!-- /wp:group -->
+
+<style>
+/* ===== Professional Header Styles ===== */
+.site-header.is-style-pro-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.98) !important;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Utility Bar */
+.utility-bar {
+    background: linear-gradient(45deg, #2c3e50, #3498db) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.utility-bar p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    margin: 0;
+}
+
+.is-style-utility-social .wp-block-social-link {
+    width: 24px;
+    height: 24px;
+}
+
+/* Promo Bar */
+.promo-bar {
+    background: linear-gradient(45deg, #e67e22, #e74c3c) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 25%,
+        rgba(255,255,255,0.15) 50%,
+        transparent 75%
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    100% { left: 200%; }
+}
+
+/* Branding */
+.is-style-logo-glow img {
+    filter: drop-shadow(0 2px 8px rgba(45, 204, 113, 0.3));
+    transition: all 0.3s ease;
+}
+
+.branding:hover .is-style-logo-glow img {
+    filter: drop-shadow(0 4px 12px rgba(45, 204, 113, 0.5));
+}
+
+/* Navigation */
+.is-style-mega-menu .wp-block-navigation__submenu-container {
+    background: rgba(0,0,0,0.97);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 32px !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+}
+
+.is-style-pill .wp-block-navigation-item__content {
+    background: rgba(255,255,255,0.05);
+    border-radius: 28px;
+    padding: 12px 24px !important;
+    transition: all 0.3s ease;
+}
+
+.is-style-pill .wp-block-navigation-item__content:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Search */
+.is-style-glass-search .wp-block-search__input {
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 50px;
+    padding: 14px 32px !important;
+    backdrop-filter: blur(12px);
+}
+
+.is-style-glass-search .wp-block-search__input:focus {
+    background: rgba(255,255,255,0.15) !important;
+    box-shadow: 0 0 0 2px #2ecc71;
+}
+
+/* Buttons */
+.is-style-gradient-button .wp-block-button__link {
+    background: linear-gradient(45deg, #2ecc71, #27ae60) !important;
+    border-radius: 50px !important;
+    padding: 14px 32px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.is-style-gradient-button .wp-block-button__link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(46, 204, 113, 0.3);
+}
+
+/* Mobile Optimization */
+@media (max-width: 1024px) {
+    .desktop-nav,
+    .utility-bar .wp-block-social-links {
+        display: none;
+    }
+    
+    .main-nav {
+        flex-direction: column;
+        gap: 16px !important;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 1025px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Close Utility Bar
+    document.querySelector('.close-utility').addEventListener('click', function() {
+        this.closest('.utility-bar').style.display = 'none';
+        document.documentElement.style.setProperty('--utility-height', '0px');
+    });
+
+    // Dynamic Sticky Header
+    const header = document.querySelector('.site-header');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        const headerHeight = header.offsetHeight;
+        
+        if (currentScroll > headerHeight) {
+            header.style.transform = currentScroll > lastScroll 
+                ? 'translateY(-100%)' 
+                : 'translateY(0)';
+            header.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
+        } else {
+            header.style.transform = 'translateY(0)';
+            header.style.boxShadow = 'none';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Mega Menu Interactions
+    document.querySelectorAll('.is-style-mega-menu').forEach(menu => {
+        menu.addEventListener('mouseenter', () => {
+            const submenu = menu.querySelector('.wp-block-navigation__submenu-container');
+            submenu.style.opacity = '1';
+            submenu.style.visibility = 'visible';
+            submenu.style.transform = 'translateY(0)';
+        });
+        
+        menu.addEventListener('mouseleave', () => {
+            const submenu = menu.querySelector('.wp-block-navigation__submenu-container');
+            submenu.style.opacity = '0';
+            submenu.style.visibility = 'hidden';
+            submenu.style.transform = 'translateY(10px)';
+        });
+    });
+
+    // Mobile Menu Toggle
+    document.querySelector('.is-style-menu-toggle').addEventListener('click', () => {
+        document.querySelector('.mobile-nav').classList.toggle('active');
+    });
+});
+</script>

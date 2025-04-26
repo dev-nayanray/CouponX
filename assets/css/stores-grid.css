@@ -1,0 +1,200 @@
+/* Main grid container */
+.cx-stores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Store card styling */
+.cx-store-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cx-store-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Store header */
+.cx-store-header {
+    padding: 1.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.cx-store-logo-link {
+    display: block;
+    margin: 0 auto 1rem;
+    max-width: 160px;
+}
+
+.cx-store-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 80px;
+}
+
+.cx-store-logo-placeholder {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: #2c3e50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.cx-store-title {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.cx-store-title a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.cx-store-count {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Coupons styling */
+.cx-store-coupons {
+    padding: 0 1.5rem;
+    flex-grow: 1;
+}
+
+.cx-coupon-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cx-coupon-type {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.cx-coupon-type-code { background: #27ae60; color: #fff; }
+.cx-coupon-type-deal { background: #2980b9; color: #fff; }
+
+.cx-coupon-code code {
+    background: #f8f9fa;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.cx-coupon-title {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.cx-coupon-expiry {
+    color: #e74c3c;
+    font-size: 0.8rem;
+}
+
+.cx-coupon-action {
+    background: #3498db;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+}
+
+.cx-coupon-action:hover {
+    background: #2980b9;
+}
+
+/* Store footer */
+.cx-store-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+}
+
+.cx-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cx-view-all svg {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+}
+
+.cx-view-all:hover {
+    color: #2c3e50;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cx-stores-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .cx-store-header {
+        padding: 1rem;
+    }
+    
+    .cx-store-logo {
+        max-height: 60px;
+    }
+}
+
+/* Empty state */
+.cx-no-stores {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+}
+/* Empty store styling */
+.cx-store-card:has(.cx-store-count:contains("0 Offer")) {
+    opacity: 0.8;
+    position: relative;
+}
+
+.cx-store-card:has(.cx-store-count:contains("0 Offer"))::after {
+    content: "No Current Offers";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #e74c3c;
+    pointer-events: none;
+}

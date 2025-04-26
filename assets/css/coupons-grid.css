@@ -1,0 +1,218 @@
+.cx-coupons-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding: 1rem;
+}
+
+.cx-coupon-card {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.cx-coupon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cx-coupon-featured-image {
+    position: relative;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+.cx-featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cx-coupon-card:hover .cx-featured-img {
+    transform: scale(1.05);
+}
+
+.cx-store-brand {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.cx-store-logo {
+    max-width: 120px;
+    height: auto;
+    object-fit: contain;
+}
+
+.cx-store-info {
+    flex-grow: 1;
+}
+
+.cx-store-name {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.cx-coupon-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.cx-category-badge {
+    background: rgba(0, 0, 0, 0.08);
+    color: #333;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8em;
+}
+
+.cx-coupon-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cx-coupon-type-badge {
+    background: #4CAF50;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85em;
+}
+
+.cx-additional-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.cx-discount-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FF5722;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.cx-coupon-expiry {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.cx-coupon-title {
+    margin: 0 1.5rem 1rem;
+    font-size: 1.25em;
+    color: #1a1a1a;
+}
+
+.cx-coupon-excerpt {
+    margin: 0 1.5rem 1.5rem;
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.cx-coupon-footer {
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+.cx-coupon-code-container {
+    display: flex;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.cx-coupon-code {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.cx-copy-code {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.cx-copy-code:hover {
+    background: #1976D2;
+}
+
+.cx-coupon-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2196F3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cx-coupon-link:hover {
+    text-decoration: underline;
+}
+
+.cx-coupon-expired-banner {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: #f44336;
+    color: white;
+    padding: 0.25rem 2rem;
+    transform: rotate(45deg);
+    font-size: 0.8em;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cx-icon {
+    fill: currentColor;
+}
+/* Categories badges */
+.cx-coupon-categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-left: 0.75rem;
+}
+
+.cx-category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e0e0e0;
+    font-size: 0.85em;
+    line-height: 1.4;
+}

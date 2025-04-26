@@ -1,0 +1,36 @@
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .wp-block-group.alignwide {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .wp-block-columns {
+        flex-wrap: wrap !important;
+    }
+    
+    .wp-block-column {
+        flex-basis: 100% !important;
+    }
+}
+
+/* Coupon Items */
+.coupon-item {
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.coupon-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Button Styles */
+.wp-block-button__link {
+    border-radius: 4px !important;
+    text-decoration: none !important;
+}
+.is-style-code-reveal { position: relative; }
+.is-style-code-reveal:hover::after { content: "XK93FJ"; }
+.coupon-masonry { column-count: 3; gap: 2rem; }
+.featured-store { position: relative; overflow: hidden; }
+

@@ -1,0 +1,105 @@
+/* Meta Box Container */
+.couponx-metabox-container {
+    padding: 15px 0;
+}
+
+/* Form Table Layout */
+.couponx-metabox-container .form-table {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.couponx-metabox-container .form-table th {
+    width: 200px;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.couponx-metabox-container .form-table td {
+    padding: 15px 20px;
+    vertical-align: top;
+}
+
+/* Input Fields */
+.couponx-metabox-container input[type="text"],
+.couponx-metabox-container input[type="number"],
+.couponx-metabox-container input[type="date"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+}
+
+/* Media Upload Section */
+.couponx-media-upload .image-preview img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    padding: 3px;
+    background: #fff;
+}
+
+.couponx-media-upload button {
+    margin-right: 8px !important;
+    vertical-align: middle;
+}
+
+/* Checkbox Field */
+.couponx-metabox-container input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+/* Responsive Handling */
+@media screen and (max-width: 782px) {
+    .couponx-metabox-container .form-table th,
+    .couponx-metabox-container .form-table td {
+        display: block;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .couponx-metabox-container .form-table th {
+        padding-bottom: 0;
+    }
+}
+.category-carousel-section {
+    padding: 50px 0;
+    background: #f9f9f9;
+}
+.category-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+.category-card:hover {
+    transform: translateY(-8px);
+}
+.category-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}
+.category-name {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.category-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #0073aa;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.category-button:hover {
+    background: #005177;
+}
+
+
