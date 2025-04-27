@@ -1,0 +1,287 @@
+/* Premium FSE Styles with Unique Layout */
+.deal-of-day-modern-fse {
+    --shine-gradient: linear-gradient(120deg, 
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    --accent-glow: radial-gradient(circle at center, 
+        var(--wp--preset--color--accent) 0%,
+        transparent 70%
+    );
+}
+
+.deal-of-day-modern-fse .wp-block-cover {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+}
+
+.deal-of-day-modern-fse .wp-block-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(215deg, 
+        rgba(15, 18, 25, 0.95) 20%,
+        rgba(40, 45, 60, 0.85) 80%
+    );
+    z-index: 1;
+    mix-blend-mode: multiply;
+}
+
+.deal-of-day-modern-fse .wp-block-cover::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: var(--accent-glow);
+    opacity: 0.3;
+    z-index: 2;
+    pointer-events: none;
+    animation: glow-pulse 4s ease infinite;
+}
+
+.deal-content {
+    position: relative;
+    z-index: 3;
+    padding: 6rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.deal-title {
+    font-size: 4.5rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 2rem !important;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(45deg, #fff 65%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+}
+
+.deal-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: var(--wp--preset--color--accent);
+    border-radius: 2px;
+}
+
+.deal-subtitle {
+    font-size: 1.5rem !important;
+    max-width: 600px;
+    margin: 0 auto 4rem !important;
+    position: relative;
+    color: rgba(255,255,255,0.9) !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.modern-countdown-fse {
+    padding: 3rem !important;
+    margin: 4rem 0 !important;
+    border-radius: 20px !important;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    transform: perspective(1000px) rotateX(5deg);
+    box-shadow: 
+        0 24px 48px -12px rgba(0,0,0,0.25),
+        inset 0 4px 12px -2px rgba(255,255,255,0.1);
+}
+
+.countdown-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.countdown-item {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 
+        0 4px 6px -1px rgba(0,0,0,0.1),
+        inset 0 2px 4px -2px rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.1);
+}
+
+.countdown-item .days,
+.countdown-item .hours,
+.countdown-item .minutes,
+.countdown-item .seconds {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #fff 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.85) !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.countdown-separator {
+    position: absolute;
+    top: 50%;
+    right: -1.25rem;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    pointer-events: none;
+}
+
+.deal-cta-fse .wp-block-button__link {
+    padding: 1.75rem 5rem;
+    border-radius: 999px;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    background: linear-gradient(135deg, 
+        var(--wp--preset--color--primary) 0%,
+        var(--wp--preset--color--accent) 100%
+    ) !important;
+    border: none !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.deal-cta-fse .wp-block-button__link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--shine-gradient);
+    opacity: 0.4;
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.deal-cta-fse .wp-block-button__link:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 12px 24px -6px rgba(0,0,0,0.3),
+        0 0 24px -4px var(--wp--preset--color--accent);
+}
+
+.deal-cta-fse .wp-block-button__link:hover::before {
+    transform: translateX(100%);
+}
+
+@keyframes glow-pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+@media (max-width: 1024px) {
+    .deal-title {
+        font-size: 3.5rem !important;
+    }
+    
+    .countdown-container {
+        gap: 1.5rem;
+    }
+    
+    .countdown-item {
+        padding: 1rem;
+    }
+    
+    .countdown-item .days,
+    .countdown-item .hours,
+    .countdown-item .minutes,
+    .countdown-item .seconds {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .deal-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .deal-subtitle {
+        font-size: 1.2rem !important;
+    }
+    
+    .modern-countdown-fse {
+        padding: 2rem !important;
+    }
+    
+    .countdown-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .countdown-separator {
+        display: none;
+    }
+    
+    .deal-cta-fse .wp-block-button__link {
+        padding: 1.25rem 3rem;
+    }
+}
+
+/* Unique Layout Elements */
+.deal-content::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    filter: blur(60px);
+    z-index: -1;
+    animation: float 20s infinite linear;
+}
+
+.deal-content::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(var(--wp--preset--color--accent-rgb), 0.05);
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 25s infinite linear;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, 10px) rotate(5deg); }
+    50% { transform: translate(-10px, 15px) rotate(-5deg); }
+    75% { transform: translate(15px, -10px) rotate(3deg); }
+}

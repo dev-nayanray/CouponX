@@ -322,3 +322,21 @@ function couponx_enqueue_blog_styles() {
     );
 }
 add_action('wp_enqueue_scripts', 'couponx_enqueue_blog_styles');
+
+function couponx_enqueue_premium_styles() {
+    wp_enqueue_style(
+        'couponx-premium',
+        get_template_directory_uri() . '/assets/css/premium-deals.css',
+        array(),
+        '1.1.0'
+    );
+    
+    wp_enqueue_script(
+        'couponx-countdown',
+        get_template_directory_uri() . '/assets/js/countdown.js',
+        array(),
+        '1.0.0',
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'couponx_enqueue_premium_styles');

@@ -1,0 +1,74 @@
+/* Premium Masonry Layout */
+.premium-coupon-masonry {
+    gap: 2rem;
+    margin: 0 auto;
+}
+
+.coupon-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    break-inside: avoid;
+}
+
+.coupon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+
+.coupon-header {
+    margin-bottom: 1rem;
+}
+
+.store-logo img {
+    object-fit: contain;
+    height: auto;
+    max-width: 100%;
+}
+
+.expiration-date {
+    color: #e74c3c;
+    font-weight: 500;
+    margin: 0;
+}
+
+.coupon-divider {
+    border-color: rgba(0,0,0,0.1);
+    margin: 1.5rem 0;
+}
+
+.coupon-code code {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.is-style-premium-reveal .wp-block-button__link {
+    background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+    color: white !important;
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.coupon-terms {
+    color: #95a5a6;
+    margin: 1rem 0 0;
+}
+
+/* Responsive Masonry */
+@media (max-width: 1024px) {
+    .premium-coupon-masonry {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .premium-coupon-masonry {
+        grid-template-columns: 1fr;
+    }
+}
