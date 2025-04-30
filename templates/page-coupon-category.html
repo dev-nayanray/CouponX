@@ -1,0 +1,57 @@
+<!-- wp:template-part {"slug":"header","theme":"your-theme-slug","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<main class="wp-block-group">
+
+  <!-- Page Title -->
+  <!-- wp:heading {"level":1,"style":{"spacing":{"margin":{"bottom":"30px"}}}} -->
+  <h1>Coupons in <span class="wp-block-query-title__taxonomy-term">[Category]</span></h1>
+  <!-- /wp:heading -->
+
+  <!-- Coupon Grid Query -->
+  <!-- wp:query {"query":{"post_type":"coupon","taxonomy":"coupon-category","term":"electronic","perPage":12},"displayLayout":{"type":"grid","columns":3},"layout":{"type":"default"}} -->
+  <div class="wp-block-query">
+
+    <!-- wp:post-template -->
+    <!-- wp:group {"className":"coupon-card","layout":{"type":"constrained"},"style":{"spacing":{"padding":"20px"},"border":{"radius":"12px"},"boxShadow":"0px 2px 8px rgba(0,0,0,0.1)","background":"#ffffff"}} -->
+    <div class="wp-block-group coupon-card">
+
+      <!-- Featured Badge (Optional) -->
+      <!-- wp:paragraph {"style":{"color":{"text":"#ffffff"},"background":{"color":"#ff5e5e"},"spacing":{"padding":{"top":"4px","bottom":"4px","left":"8px","right":"8px"}},"typography":{"fontSize":"12px","fontWeight":"700"}},"className":"badge"} -->
+      <p class="badge">Top Rated</p>
+      <!-- /wp:paragraph -->
+
+      <!-- wp:post-featured-image {"isLink":true,"width":"100%","style":{"border":{"radius":"8px"}}} /-->
+
+      <!-- wp:post-title {"isLink":true,"style":{"typography":{"fontSize":"18px","fontWeight":"600"},"spacing":{"margin":{"top":"10px","bottom":"10px"}}}} /-->
+
+      <!-- wp:post-excerpt {"style":{"typography":{"fontSize":"14px"}}} /-->
+
+      <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"},"style":{"spacing":{"margin":{"top":"15px"}}}} -->
+      <div class="wp-block-group">
+
+        <!-- wp:post-date {"style":{"typography":{"fontSize":"13px","fontStyle":"italic"}}} /-->
+        <!-- wp:read-more {"content":"Get Deal","style":{"typography":{"fontWeight":"600"},"color":{"text":"#ffffff"},"background":{"color":"#0073e6"},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"16px","right":"16px"}},"border":{"radius":"6px"}},"className":"read-more-btn"} /-->
+
+      </div>
+      <!-- /wp:group -->
+
+    </div>
+    <!-- /wp:group -->
+    <!-- /wp:post-template -->
+
+    <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"30px"}}}} -->
+    <div class="wp-block-query-pagination">
+      <!-- wp:query-pagination-previous /-->
+      <!-- wp:query-pagination-numbers /-->
+      <!-- wp:query-pagination-next /-->
+    </div>
+    <!-- /wp:query-pagination -->
+
+  </div>
+  <!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"your-theme-slug","tagName":"footer"} /-->

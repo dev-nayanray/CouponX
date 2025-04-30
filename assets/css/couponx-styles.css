@@ -1,0 +1,123 @@
+/***** Coupon Grid Carousel Styles *****/
+.wp-block-columns.couponx-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.couponx-carousel .wp-block-column {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+/***** Responsive Grid/Carousel Hybrid *****/
+@media (max-width: 1024px) {
+    .wp-block-columns.couponx-carousel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .wp-block-columns.couponx-carousel {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        grid-template-columns: none;
+        padding-bottom: 1.5rem;
+    }
+    
+    .couponx-carousel .wp-block-column {
+        flex: 0 0 80%;
+        margin: 0 1rem;
+        scroll-snap-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .couponx-carousel .wp-block-column {
+        flex: 0 0 90%;
+    }
+}
+
+/***** Card Content Enhancements *****/
+.couponx-carousel .wp-block-cover {
+    min-height: 350px !important;
+    padding: 2rem !important;
+}
+
+.couponx-carousel .wp-block-cover__inner-container {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+}
+
+.couponx-carousel h2 {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.2;
+}
+
+.couponx-carousel .wp-block-button__link {
+    padding: 12px 30px !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease;
+}
+
+/***** Interactive Elements *****/
+.couponx-carousel .wp-block-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.couponx-carousel .wp-block-button__link:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/***** Scrollbar Styling (Mobile Carousel) *****/
+@media (max-width: 768px) {
+    .couponx-carousel::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .couponx-carousel::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+    }
+}
+
+/***** Optional Grid Features *****/
+/* Ribbon Badge */
+.coupon-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: #ff4757;
+    color: white;
+    padding: 8px 40px;
+    transform: rotate(45deg);
+    font-size: 0.9rem;
+    font-weight: 700;
+    z-index: 1;
+}
+
+/* Expiration Counter */
+.expiration-counter {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: auto;
+}

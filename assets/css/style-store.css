@@ -1,0 +1,122 @@
+/* Coupon Grid Styles */
+.coupon-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.coupon-filters {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.filter-btn {
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    padding: 0.5rem 1.5rem;
+    margin: 0 0.5rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #2d89ef;
+    color: #fff;
+    border-color: #2d89ef;
+}
+
+.coupon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.coupon-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.coupon-card:hover {
+    transform: translateY(-5px);
+}
+
+.store-logo {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid #eee;
+}
+
+.store-logo img {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+.coupon-content {
+    padding: 1.5rem;
+}
+
+.coupon-code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.copy-btn {
+    background: #2d89ef;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #1c6ac4;
+}
+
+.expiry-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.coupon-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+}
+
+.active-label {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.expired-label {
+    background: #f44336;
+    color: #fff;
+}
+
+/* Expired Coupon Style */
+.coupon-card.expired {
+    opacity: 0.7;
+    filter: grayscale(0.8);
+}
+
+.coupon-card.expired .copy-btn {
+    background: #ccc;
+    cursor: not-allowed;
+}

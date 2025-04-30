@@ -145,6 +145,10 @@ function couponx_theme_setup() {
 require_once get_template_directory() . '/inc/couponpost.php';
 require_once get_template_directory() . '/inc/custom-meta.php';
 require_once get_template_directory() . '/inc/performance.php';
+// Include theme options
+require_once get_template_directory() . '/inc/theme-options.php';
+require_once get_template_directory() . '/inc/coupon-api.php'; 
+require_once get_template_directory() . '/inc/database.php'; 
 
 
 
@@ -290,9 +294,9 @@ add_action('wp_enqueue_scripts', 'couponx_enqueue_carousel_assets');
 // Register menus
 function register_pro_menus() {
     register_nav_menus([
-        'primary' => __('Primary Menu', 'text-domain'),
-        'utility' => __('Utility Menu', 'text-domain'),
-        'mobile' => __('Mobile Menu', 'text-domain')
+        'primary' => __('Primary Menu', 'couponx'),
+        'utility' => __('Utility Menu', 'couponx'),
+        'mobile' => __('Mobile Menu', 'couponx')
     ]);
 }
 add_action('init', 'register_pro_menus');
@@ -340,3 +344,115 @@ function couponx_enqueue_premium_styles() {
     );
 }
 add_action('wp_enqueue_scripts', 'couponx_enqueue_premium_styles');
+
+// Add AJAX handlers
+add_action('wp_ajax_couponx_load_more', 'couponx_load_more');
+add_action('wp_ajax_nopriv_couponx_load_more', 'couponx_load_more');
+
+function couponx_load_more() {
+    check_ajax_referer('couponx-nonce', 'nonce');
+    
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $posts_per_page = 6; // Same as initial load
+    
+    // Query your coupons here
+    $args = array(
+        'post_type'      => 'coupon',
+        'posts_per_page' => $posts_per_page,
+        'paged'          => $page,
+        'post_status'    => 'publish'
+    );
+    
+    $query = new WP_Query($args);
+    
+    if($query->have_posts()):
+        ob_start();
+        while($query->have_posts()): $query->the_post();
+            // Output your coupon HTML structure here
+            ?>
+            <div class="wp-block-group masonry-item coupon-card premium-card">
+                <!-- Your coupon card markup -->
+            </div>
+            <?php
+        endwhile;
+        $html = ob_get_clean();
+        
+        wp_send_json_success(array(
+            'html'     => $html,
+            'max_page' => $query->max_num_pages
+        ));
+    else:
+        wp_send_json_error();
+    endif;
+    
+    wp_die();
+}
+function couponx_testimonial_styles() {
+    wp_enqueue_style(
+        'couponx-testimonial-grid',
+        get_template_directory_uri() . '/assets/css/testimonial-grid.css',
+        array(),
+        filemtime(get_template_directory() . '/assets/css/testimonial-grid.css')
+    );
+}
+add_action('wp_enqueue_scripts', 'couponx_testimonial_styles');
+function couponx_testimonial_slider_assets() {
+    // Swiper CSS
+    wp_enqueue_style(
+        'swiper-css',
+        'https://unpkg.com/swiper@8/swiper-bundle.min.css'
+    );
+    
+    // Swiper JS
+    wp_enqueue_script(
+        'swiper-js',
+        'https://unpkg.com/swiper@8/swiper-bundle.min.js',
+        array(),
+        '8.4.5',
+        true
+    );
+    
+    // Custom Slider Initialization
+    wp_enqueue_script(
+        'couponx-slider-init',
+        get_template_directory_uri() . '/assets/js/slider-init.js',
+        array('swiper-js'),
+        filemtime(get_template_directory() . '/assets/js/slider-init.js'),
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'couponx_testimonial_slider_assets');
+
+function couponx_enqueue_testimonial_slider_scripts() {
+    // Enqueue Swiper CSS
+    wp_enqueue_style(
+        'swiper-css',
+        'https://unpkg.com/swiper@8/swiper-bundle.min.css',
+        array(),
+        '8.4.7'
+    );
+
+    // Enqueue Swiper JS
+    wp_enqueue_script(
+        'swiper-js',
+        'https://unpkg.com/swiper@8/swiper-bundle.min.js',
+        array(),
+        '8.4.7',
+        true
+    );
+
+    // Enqueue custom slider script
+    wp_enqueue_script(
+        'testimonial-slider',
+        get_template_directory_uri() . '/assets/js/testimonial-slider.js',
+        array('swiper-js'),
+        filemtime(get_template_directory() . '/assets/js/testimonial-slider.js'),
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'couponx_enqueue_testimonial_slider_scripts');
+function enqueue_coupon_scripts() {
+    wp_enqueue_style('coupon-style', get_stylesheet_directory_uri() . '/assets/css/style-store.css');
+    wp_enqueue_script('coupon-script', get_stylesheet_directory_uri() . '/assets/js/coupon-script.js', array(), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_coupon_scripts');

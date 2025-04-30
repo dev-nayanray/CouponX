@@ -32,3 +32,53 @@ jQuery(document).ready(function($) {
         });
     });
 });
+jQuery(document).ready(function($) {
+    const $container = $('.premium-coupon-masonry');
+    const $loadMoreBtn = $('.is-style-load-more');
+    let page = 1;
+    
+    // Initialize masonry
+    $container.imagesLoaded(function() {
+        $container.masonry({
+            itemSelector: '.masonry-item',
+            columnWidth: '.masonry-item',
+            percentPosition: true
+        });
+    });
+
+    // Load more handler
+    $loadMoreBtn.on('click', function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+            url: couponx_vars.ajaxurl,
+            type: 'post',
+            data: {
+                action: 'couponx_load_more',
+                page: page + 1,
+                nonce: couponx_vars.nonce
+            },
+            beforeSend: function() {
+                $loadMoreBtn.addClass('loading').text('Loading...');
+            },
+            success: function(response) {
+                if(response.success) {
+                    const $items = $(response.data.html);
+                    
+                    $items.imagesLoaded(function() {
+                        $container.append($items).masonry('appended', $items);
+                        $container.masonry('layout');
+                    });
+                    
+                    page++;
+                    if(page >= response.data.max_page) {
+                        $loadMoreBtn.hide();
+                    }
+                }
+            },
+            complete: function() {
+                $loadMoreBtn.removeClass('loading').text('Load More');
+            }
+        });
+    });
+});

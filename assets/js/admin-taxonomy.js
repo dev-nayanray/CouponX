@@ -1,44 +1,38 @@
 jQuery(document).ready(function($) {
-    // Uploader variable
-    var file_frame;
-
-    // Add Image button
-    $('.ct_tax_media_button').click(function(e) {
+    // Media uploader for taxonomy images
+    $('.ct-tax-media-button').click(function(e) {
         e.preventDefault();
-
-        var button = $(this);
-        var wrapper = button.closest('.form-field').find('#taxonomy-image-wrapper') || $('#taxonomy-image-wrapper');
-
-        // If the media frame already exists, reopen it.
-        if (file_frame) {
-            file_frame.open();
-            return;
-        }
-
-        // Create the media frame.
-        file_frame = wp.media.frames.file_frame = wp.media({
-            title: button.data('uploader_title') || 'Select Image',
-            button: {
-                text: button.data('uploader_button_text') || 'Use Image'
-            },
-            multiple: false // Set to true for multiple files
+        
+        const button = $(this);
+        const wrapper = button.closest('.form-field').find('#taxonomy-image-wrapper');
+        const input = button.closest('.form-field').find('#taxonomy-image-id');
+        
+        // Create media frame
+        const frame = wp.media({
+            title: 'Select or Upload Image',
+            button: { text: 'Use this image' },
+            multiple: false
         });
 
-        // When an image is selected, run a callback.
-        file_frame.on('select', function() {
-            var attachment = file_frame.state().get('selection').first().toJSON();
-            $('#taxonomy-image-id').val(attachment.id);
-            wrapper.html('<img src="' + attachment.url + '" alt="" style="max-width:100px;"/>');
+        // Handle image selection
+        frame.on('select', function() {
+            const attachment = frame.state().get('selection').first().toJSON();
+            input.val(attachment.id);
+            wrapper.html('<img src="' + attachment.url + '" alt="" style="max-width:200px;"/>');
         });
 
-        // Open the media frame.
-        file_frame.open();
+        frame.open();
     });
 
-    // Remove Image button
-    $('.ct_tax_media_remove').click(function(e) {
+    // Remove image handler
+    $('.ct-tax-media-remove').click(function(e) {
         e.preventDefault();
-        $('#taxonomy-image-id').val('');
-        $('#taxonomy-image-wrapper').html('');
+        
+        const button = $(this);
+        const wrapper = button.closest('.form-field').find('#taxonomy-image-wrapper');
+        const input = button.closest('.form-field').find('#taxonomy-image-id');
+        
+        input.val('');
+        wrapper.html('');
     });
 });

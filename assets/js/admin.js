@@ -67,3 +67,63 @@
     });
 
 })(jQuery);
+
+jQuery(document).ready(function($) {
+    // Media uploader
+    $('.couponx-upload-image').click(function(e) {
+        e.preventDefault();
+
+        var button = $(this);
+        var customUploader = wp.media({
+            title: 'Choose Coupon Image',
+            library: {
+                type: 'image'
+            },
+            button: {
+                text: 'Use this image'
+            },
+            multiple: false
+        }).on('select', function() {
+            var attachment = customUploader.state().get('selection').first().toJSON();
+            button.siblings('input[type="hidden"]').val(attachment.id);
+            button.siblings('.couponx-image-preview').html('<img src="' + attachment.url + '" style="max-width:200px; height:auto;">');
+            button.siblings('.couponx-remove-image').show();
+        }).open();
+    });
+
+    // Remove image
+    $('.couponx-remove-image').click(function(e) {
+        e.preventDefault();
+        $(this).siblings('input[type="hidden"]').val('');
+        $(this).siblings('.couponx-image-preview').html('');
+        $(this).hide();
+    });
+});
+
+jQuery(document).ready(function($) {
+    // Image upload
+    $('.couponx-upload-image').click(function(e) {
+        e.preventDefault();
+        const button = $(this);
+        const customUploader = wp.media({
+            title: 'Select Image',
+            library: { type: 'image' },
+            button: { text: 'Use This Image' },
+            multiple: false
+        }).on('select', function() {
+            const attachment = customUploader.state().get('selection').first().toJSON();
+            button.siblings('.couponx-image-preview').html('<img src="'+attachment.url+'" style="max-width:200px;">');
+            button.siblings('.couponx-remove-image').show();
+            button.siblings('input[type="hidden"]').val(attachment.id);
+        }).open();
+    });
+
+    // Image removal
+    $('.couponx-remove-image').click(function(e) {
+        e.preventDefault();
+        $(this).siblings('.couponx-image-preview').html('');
+        $(this).hide();
+        $(this).siblings('input[type="hidden"]').val('');
+    });
+});
+

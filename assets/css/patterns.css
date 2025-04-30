@@ -1,0 +1,213 @@
+/* Main Container */
+.newsletter-premium-pro {
+    background: linear-gradient(135deg, #0B1120 0%, #111827 100%);
+    color: #E2E8F0;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem;
+    border-radius: 1.5rem;
+}
+
+.newsletter-premium-pro::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Benefit Cards - Updated */
+.benefit-card {
+    background: rgba(255, 255, 255, 0.9); /* lighter background for better contrast */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #111827; /* Blackish text color */
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 1); /* solid white on hover */
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Pop Animation */
+.animate-pop {
+    animation: popIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    80% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* Newsletter Form */
+.newsletter-form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 4rem;
+    color: #F8FAFC;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter-form-pro .wp-block-jetpack-mailchimp input[type="email"] {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    color: #F1F5F9;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form-pro .wp-block-jetpack-mailchimp input[type="email"]::placeholder {
+    color: #94A3B8;
+}
+
+.newsletter-form-pro .wp-block-jetpack-mailchimp input[type="email"]:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #3B82F6;
+    outline: none;
+}
+
+.newsletter-form-pro .wp-block-jetpack-mailchimp button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.4s ease;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.newsletter-form-pro .wp-block-jetpack-mailchimp button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+}
+
+/* Privacy Note */
+.privacy-note {
+    font-size: 0.875rem;
+    color: #94A3B8;
+    opacity: 0.85;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .newsletter-columns {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .features-column,
+    .form-column {
+        flex: 1 1 100%;
+    }
+
+    .newsletter-form-container {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .benefit-card {
+        padding: 1.5rem;
+    }
+
+    .newsletter-form-container {
+        padding: 2rem;
+    }
+
+    .newsletter-form-pro .wp-block-jetpack-mailchimp input[type="email"],
+    .newsletter-form-pro .wp-block-jetpack-mailchimp button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+/* Premium Newsletter Form Styles */
+
+.newsletter-form-pro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .newsletter-form-pro input[type="text"],
+  .newsletter-form-pro input[type="email"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 1px solid #d1d5db; /* Light gray */
+    border-radius: 12px;
+    background-color: #ffffff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .newsletter-form-pro input[type="text"]:focus,
+  .newsletter-form-pro input[type="email"]:focus {
+    border-color: var(--wp--preset--color--primary);
+    box-shadow: 0 0 0 4px rgba(66, 191, 255, 0.3);
+    outline: none;
+  }
+  
+  .newsletter-form-pro button[type="submit"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background-color: var(--wp--preset--color--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .newsletter-form-pro button[type="submit"]:hover {
+    background-color: #0ea5e9; /* slightly lighter primary */
+    transform: translateY(-2px);
+  }
+  
+  .newsletter-form-pro button[type="submit"]:active {
+    background-color: #0284c7; /* deeper primary */
+    transform: translateY(0);
+  }
+  
+  /* Responsive Tweaks */
+  @media (max-width: 600px) {
+    .newsletter-form-pro {
+      gap: 1rem;
+    }
+  }
+  

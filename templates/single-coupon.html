@@ -2,62 +2,425 @@
 
 <!-- wp:group {"tagName":"main","align":"wide","className":"single-coupon-page"} -->
 <main class="wp-block-group alignwide single-coupon-page">
-    
-    <!-- Post Title -->
     <!-- wp:post-title {"level":1,"className":"single-coupon-title"} /-->
 
-    <!-- Layout: Columns -->
-    <!-- wp:columns {"align":"wide"} -->
-    <div class="wp-block-columns alignwide">
-        
+    <!-- wp:columns {"align":"wide","className":"coupon-columns"} -->
+    <div class="wp-block-columns alignwide coupon-columns">
         <!-- Left Column: Image -->
-        <!-- wp:column {"width":"60%"} -->
-        <div class="wp-block-column" style="flex-basis:60%">
-            <!-- wp:post-featured-image {"className":"single-coupon-image"} /-->
+        <div class="wp-block-column" style="flex-basis:55%">
+            <!-- wp:post-featured-image {"className":"coupon-featured-image","sizeSlug":"large"} /-->
         </div>
-        <!-- /wp:column -->
-        
+
         <!-- Right Column: Content -->
-        <!-- wp:column {"width":"40%"} -->
-        <div class="wp-block-column" style="flex-basis:40%">
-            <!-- wp:post-content {"className":"single-coupon-description"} /-->
-            
-            <!-- Coupon Info Section -->
-            <!-- wp:group {"style":{"spacing":{"padding":{"top":"20px"}}},"className":"coupon-info-section"} -->
-            <div class="wp-block-group coupon-info-section" style="padding-top:20px">
-                
+        <div class="wp-block-column coupon-details" style="flex-basis:45%">
+            <!-- wp:group {"className":"coupon-meta-header","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+            <div class="wp-block-group coupon-meta-header">
                 <?php
-                // Get all post meta
-                $post_meta = get_post_meta(get_the_ID());
-
-                if (!empty($post_meta)) :
+                $expiration_date = get_post_meta(get_the_ID(), '_couponx_expiry', true);
+                $is_expired = ($expiration_date && strtotime($expiration_date) < time());
+                $is_printable = get_post_meta(get_the_ID(), '_printable', true) === 'on';
+                $is_new_customer = get_post_meta(get_the_ID(), '_new_customers_only', true) === 'on';
                 ?>
-                    <div class="all-coupon-meta" style="padding: 20px; background: #f9f9f9; border-radius: 8px;">
-                        <?php foreach ($post_meta as $key => $value) :
-                            // Skip WordPress hidden meta fields (start with "_")
-                            if (strpos($key, '_') === 0) continue;
-
-                            // Get the value (handle array)
-                            $meta_value = is_array($value) ? implode(', ', $value) : $value;
-                        ?>
-                            <p style="margin-bottom:10px;">
-                                <strong><?php echo esc_html(ucwords(str_replace('_', ' ', $key))); ?>:</strong> 
-                                <?php echo esc_html($meta_value); ?>
-                            </p>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-
+                
+                <div class="status-badges">
+                    <?php if($is_expired): ?>
+                        <span class="expired-badge">Expired</span>
+                    <?php else: ?>
+                        <span class="valid-badge">Valid</span>
+                    <?php endif; ?>
+                    
+                    <?php if($is_printable): ?>
+                        <span class="printable-badge">Printable</span>
+                    <?php endif; ?>
+                    
+                    <?php if($is_new_customer): ?>
+                        <span class="new-customer-badge">New Customers</span>
+                    <?php endif; ?>
+                </div>
+                
+                <!-- wp:post-date {"className":"coupon-date","format":"F j, Y"} /-->
             </div>
             <!-- /wp:group -->
 
+            <!-- Coupon Code Box -->
+            <div class="coupon-code-box">
+                <?php 
+                $coupon_code = get_post_meta(get_the_ID(), '_couponx_code', true);
+                $deal_code = get_post_meta(get_the_ID(), '_deal_code', true);
+                $discount_type = get_post_meta(get_the_ID(), '_discount_type', true);
+                $discount_value = get_post_meta(get_the_ID(), '_discount_value', true);
+                ?>
+                <div class="discount-header">
+                    <span class="discount-value">
+                        <?php if($discount_type === 'percentage'): ?>
+                            <?php echo esc_html($discount_value); ?>% OFF
+                        <?php else: ?>
+                            $<?php echo esc_html($discount_value); ?> OFF
+                        <?php endif; ?>
+                    </span>
+                    <?php if($coupon_code): ?>
+                        <span class="code-type">Promo Code</span>
+                    <?php elseif($deal_code): ?>
+                        <span class="code-type">Deal</span>
+                    <?php endif; ?>
+                </div>
+
+                <?php if($coupon_code): ?>
+                <div class="code-container">
+                    <span class="code"><?php echo esc_html($coupon_code); ?></span>
+                    <button class="copy-button" data-clipboard-text="<?php echo esc_attr($coupon_code); ?>">
+                        <span class="copy-text">Copy</span>
+                        <span class="copied-text">Copied!</span>
+                    </button>
+                </div>
+                <p class="coupon-instructions">Click "Copy" to save this code for checkout</p>
+                <?php elseif($deal_code): ?>
+                <div class="deal-container">
+                    <a href="<?php echo esc_url(get_post_meta(get_the_ID(), '_affiliate_url', true)); ?>" 
+                       class="deal-button" 
+                       target="_blank" 
+                       rel="nofollow">
+                        View Deal →
+                    </a>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Coupon Details -->
+            <div class="coupon-detail-list">
+                <?php
+                $stores = get_the_terms(get_the_ID(), 'store');
+                $minimum_purchase = get_post_meta(get_the_ID(), '_minimum_purchase', true);
+                $usage_limit = get_post_meta(get_the_ID(), '_usage_limit', true);
+                ?>
+
+                <?php if($stores && !is_wp_error($stores)): ?>
+                <div class="detail-item">
+                    <span class="detail-label">Store:</span>
+                    <span class="detail-value">
+                        <?php foreach($stores as $store): ?>
+                            <?php echo esc_html($store->name); ?>
+                        <?php endforeach; ?>
+                    </span>
+                </div>
+                <?php endif; ?>
+
+                <?php if($expiration_date): ?>
+                <div class="detail-item">
+                    <span class="detail-label">Expires:</span>
+                    <span class="detail-value"><?php echo date('F j, Y', strtotime($expiration_date)); ?></span>
+                </div>
+                <?php endif; ?>
+
+                <?php if($minimum_purchase): ?>
+                <div class="detail-item">
+                    <span class="detail-label">Minimum Purchase:</span>
+                    <span class="detail-value">$<?php echo esc_html($minimum_purchase); ?></span>
+                </div>
+                <?php endif; ?>
+
+                <?php if($usage_limit): ?>
+                <div class="detail-item">
+                    <span class="detail-label">Usage Limit:</span>
+                    <span class="detail-value"><?php echo esc_html($usage_limit); ?> times</span>
+                </div>
+                <?php endif; ?>
+
+                <div class="detail-item">
+                    <span class="detail-label">Last Updated:</span>
+                    <span class="detail-value"><?php the_modified_date('F j, Y'); ?></span>
+                </div>
+            </div>
+
+            <!-- Redeem Button -->
+            <div class="coupon-actions">
+                <?php
+                $affiliate_url = get_post_meta(get_the_ID(), '_affiliate_url', true);
+                $store_link = get_post_meta(get_the_ID(), '_store_link', true);
+                $target_url = $affiliate_url ?: $store_link;
+                ?>
+                <?php if($target_url): ?>
+                <a href="<?php echo esc_url($target_url); ?>" 
+                   class="redeem-button" 
+                   target="_blank" 
+                   rel="nofollow noopener noreferrer">
+                    Redeem Now →
+                </a>
+                <?php endif; ?>
+            </div>
         </div>
-        <!-- /wp:column -->
-        
     </div>
     <!-- /wp:columns -->
-    
+
+    <!-- Additional Content -->
+    <div class="coupon-additional-content">
+        <!-- wp:post-content /-->
+    </div>
 </main>
 <!-- /wp:group -->
 
+<style>
+    /* Updated status badge colors */
+    .printable-badge { background: #f1c40f; color: #000; }
+    .new-customer-badge { background: #e67e22; color: #fff; }
+
+    /* Deal button styling */
+    .deal-container {
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+
+    .deal-button {
+        display: block;
+        padding: 1rem;
+        background: #2980b9;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 700;
+        transition: transform 0.3s ease;
+    }
+
+    .deal-button:hover {
+        transform: translateY(-2px);
+        background: #2471a3;
+    }
+
+    /* Rating display */
+    .coupon-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    .rating-stars {
+        color: #f39c12;
+        font-size: 1.2rem;
+    }
+</style>
+
 <!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
+<style>
+    .single-coupon-page {
+        padding: 2rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 2rem auto;
+        max-width: 1200px;
+    }
+
+    .coupon-featured-image img {
+        border-radius: 8px;
+        height: 400px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .status-badges {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .status-badges > span {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .expired-badge { background: #e74c3c; color: white; }
+    .valid-badge { background: #4CAF50; color: white; }
+    .exclusive-badge { background: #9b59b6; color: white; }
+    .verified-badge { background: #3498db; color: white; }
+
+    .coupon-code-box {
+        background: #f8f9fa;
+        border: 2px dashed #4CAF50;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+
+    .discount-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .discount-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .code-type {
+        background: #34495e;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+    }
+
+    .code-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .code {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        letter-spacing: 2px;
+    }
+
+    .copy-button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .copy-button:hover {
+        background: #45a049;
+        transform: translateY(-1px);
+    }
+
+    .copied-text {
+        display: none;
+    }
+
+    .copy-button.copied .copy-text {
+        display: none;
+    }
+
+    .copy-button.copied .copied-text {
+        display: inline;
+    }
+
+    .coupon-detail-list {
+        margin: 2rem 0;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .detail-item.terms {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .detail-label {
+        font-weight: 600;
+        color: #34495e;
+        min-width: 120px;
+    }
+
+    .redeem-button {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background: #4CAF50;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .redeem-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .coupon-additional-content {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+    }
+
+    @media (max-width: 768px) {
+        .coupon-columns {
+            flex-direction: column;
+        }
+        
+        .coupon-featured-image img {
+            height: 250px;
+        }
+        
+        .code-container {
+            flex-direction: column;
+        }
+        
+        .detail-item {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy to clipboard functionality
+        const copyButtons = document.querySelectorAll('.copy-button');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const text = this.dataset.clipboardText;
+                navigator.clipboard.writeText(text).then(() => {
+                    this.classList.add('copied');
+                    setTimeout(() => this.classList.remove('copied'), 2000);
+                    
+                    // Add visual feedback
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.4)';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 600ms linear';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+
+        // Add keyboard accessibility for redeem button
+        const redeemButton = document.querySelector('.redeem-button');
+        if(redeemButton) {
+            redeemButton.addEventListener('keypress', (e) => {
+                if(e.key === 'Enter' || e.key === ' ') {
+                    window.open(redeemButton.href, '_blank');
+                }
+            });
+        }
+    });
+
+    // Add ripple effect animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>

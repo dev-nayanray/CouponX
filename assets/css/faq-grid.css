@@ -1,0 +1,139 @@
+/* Grid Layout */
+.premium-faq-grid {
+    padding: 4rem 0;
+}
+
+.faq-grid {
+    display: grid !important; /* force grid over WP column default */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Override wp-block-column so it doesn't conflict with grid */
+.faq-grid .wp-block-column {
+    margin: 0 !important;
+    flex: unset !important;
+    width: 100% !important;
+}
+
+.faq-card {
+    position: relative;
+    background: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.faq-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+
+.faq-icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 30px;
+    height: 30px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.faq-question {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #2d2d2d;
+}
+
+.faq-more {
+    background: none;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-more:hover {
+    background: #4CAF50;
+    color: white;
+}
+
+/* Modal Styles */
+.faq-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    max-width: 600px;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 15px;
+    animation: modalEnter 0.4s ease;
+    z-index: 1001;
+}
+
+
+.modal-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+}
+
+@keyframes modalEnter {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        margin: 1rem auto;
+    }
+}
